@@ -26,4 +26,19 @@ public class MessageService {
 
         return messageRepository.save(message);
     }
+
+    public List<Message> getAllMessages(){
+        return messageRepository.findAll();
+    }
+
+    public Message getMessageById(int messageId){
+        Optional<Message> message = messageRepository.findById(messageId);
+
+        if (message.isPresent()){
+            return message.get();
+        }
+        else{
+            return null;
+        }
+    }
 }

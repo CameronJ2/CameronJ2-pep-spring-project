@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.example.entity.Account;
 import com.example.entity.Message;
 import org.springframework.http.ResponseEntity;
+import java.util.*;
 
 
 /**
@@ -62,5 +63,20 @@ public class SocialMediaController {
         else {
             return ResponseEntity.status(400).build();
         }
+    }
+
+
+    @GetMapping("/messages")
+    public ResponseEntity<List<Message>> getAllMessages() {
+        List<Message> allMessages = messageService.getAllMessages();
+        
+        return ResponseEntity.ok(allMessages);
+        
+    }
+
+    @GetMapping("/messages/{id}")
+    public ResponseEntity<Message> getMessageById(@PathVariable int id) {
+        Message returnedMessage = messageService.getMessageById(id);
+        return ResponseEntity.ok(returnedMessage);  
     }
 }
