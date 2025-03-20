@@ -72,4 +72,8 @@ public class MessageService {
         messageRepository.save(message);
         return 1;
     }
+
+    public List<Message> getAllMessagesById(int id){
+        return messageRepository.findByPostedBy(id);
+    }
 }
