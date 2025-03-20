@@ -20,7 +20,7 @@ public class MessageService {
     }
 
     public Message persistMessage(Message message){
-        if (message.getMessageText() == "" || message.getMessageText().length() > 255 || accountRepository.getById(message.getPostedBy()) == null){
+        if (message.getMessageText() == "" || message.getMessageText().length() > 255 || !accountRepository.findById(message.getPostedBy()).isPresent()){
             return null;
         }
 
