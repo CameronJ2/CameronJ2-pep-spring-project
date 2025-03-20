@@ -53,4 +53,23 @@ public class MessageService {
             return 0;
         }
     }
+
+    public int updateMessageById(int id, String newMessage) {
+        Optional<Message> messageCheck = messageRepository.findById(id);
+        Message message;
+
+        if (!messageCheck.isPresent()){
+            return 0;
+        } else{
+            message = messageCheck.get();
+        }
+
+        if (newMessage == null || newMessage.length() > 255 || newMessage.trim().isEmpty()){
+            return 0;
+        }
+
+        message.setMessageText(newMessage);
+        messageRepository.save(message);
+        return 1;
+    }
 }
